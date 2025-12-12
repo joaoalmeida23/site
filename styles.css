@@ -1,0 +1,1298 @@
+/* ========================================================= */
+/* 1. RESET BÁSICO E VARIÁVEIS GERAIS */
+/* ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paleta Principal: Cinza e Branco */
+    --cor-principal: #ffffff;      /* Fundo principal (Branco Puro) */
+    --cor-secundaria: #f8f8f8;     /* Fundo suave para cabeçalho/menu */
+    
+    /* Cor Inspirada no Rodapé da Referência (Bege acinzentado) */
+    --cor-fundo-rodape: #d8c2b0;   
+    
+    /* Cor Cinza Claro/Concreto (Para Seções de Destaque, ex: Sobre) */
+    --cor-concreto-claro: #ececec; 
+    
+    /* Cores de Texto e Detalhes */
+    --cor-texto-principal: #333333; /* Cinza Escuro para Leitura */
+    --cor-texto-secundario: #555555; /* Cinza Médio */
+    --cor-destaque: #aaaaaa;       
+    --cor-borda: #eeeeee;          
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    background-color: var(--cor-principal); 
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+}
+
+section {
+    padding: 80px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--cor-texto-principal);
+    font-weight: 300; 
+}
+
+/* ========================================================= */
+/* 2. CABEÇALHO E NAVEGAÇÃO */
+/* ========================================================= */
+.cabecalho {
+    background-color: var(--cor-secundaria); 
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--cor-borda); 
+    position: sticky; 
+    top: 0;
+    z-index: 1000; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--cor-texto-secundario); 
+    margin: 0 20px;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s;
+    letter-spacing: 0.5px;
+}
+
+.menu a:hover {
+    color: var(--cor-texto-principal); 
+}
+
+/* 2.1. Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-conteudo {
+    display: none; 
+    position: absolute;
+    background-color: var(--cor-secundaria); 
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%); 
+    border-radius: 4px;
+    padding: 10px 0;
+}
+
+.dropdown-conteudo a {
+    color: var(--cor-texto-principal);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 0; 
+    font-weight: normal;
+    transition: background-color 0.3s;
+}
+
+.dropdown-conteudo a:hover {
+    background-color: var(--cor-borda); 
+    color: var(--cor-texto-principal);
+}
+
+.dropdown:hover .dropdown-conteudo {
+    display: block;
+}
+
+/* ========================================================= */
+/* 3. SEÇÃO SOBRE (CINZA CLARO) */
+/* ========================================================= */
+.sobre {
+    background-color: var(--cor-concreto-claro); 
+    padding: 100px 20px;
+    text-align: left; 
+}
+
+.sobre-conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.sobre-texto {
+    flex: 2; 
+    padding-top: 20px;
+}
+
+.sobre-texto p {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: var(--cor-texto-secundario);
+}
+
+.sobre-foto {
+    flex: 1; 
+    position: relative;
+    padding: 10px;
+    background-color: var(--cor-principal);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.sobre-foto img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+
+/* ========================================================= */
+/* 4. GALERIA (PORTFÓLIO) e TÍTULOS DE CATEGORIA */
+/* ========================================================= */
+.galeria {
+    background-color: var(--cor-principal); /* Fundo Branco para destaque das imagens */
+}
+
+.categoria-titulo {
+    font-size: 1.8em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: var(--cor-texto-principal);
+    font-weight: 500;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--cor-borda);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.grade-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    margin-top: 30px;
+    padding: 0 20px;
+    margin-bottom: 50px; 
+}
+
+.foto {
+    overflow: hidden; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    background-color: var(--cor-principal);
+    cursor: pointer; /* Adiciona cursor de clique para indicar interatividade */
+}
+
+.foto img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.foto img:hover {
+    transform: scale(1.08); 
+    opacity: 0.95; 
+}
+
+/* ========================================================= */
+/* 5. SEÇÃO DE CONTATO */
+/* ========================================================= */
+.contato {
+    background-color: var(--cor-concreto-claro); /* Usa o cinza claro novamente */
+}
+
+.contato p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.contato a {
+    color: var(--cor-texto-principal);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid var(--cor-destaque);
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.contato a:hover {
+    color: var(--cor-destaque);
+    border-bottom: 2px solid var(--cor-texto-principal);
+}
+
+.redes-sociais {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.redes-sociais a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--cor-texto-secundario);
+    color: var(--cor-principal); 
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.redes-sociais a:hover {
+    background-color: var(--cor-texto-principal); 
+    color: var(--cor-principal);
+    text-decoration: none;
+}
+
+
+/* ========================================================= */
+/* 6. RODAPÉ PROFISSIONAL (BEGE ACINZENTADO) */
+/* ========================================================= */
+.rodape-profissional {
+    background-color: var(--cor-fundo-rodape); 
+    color: var(--cor-texto-principal);
+    padding: 60px 20px 20px; 
+}
+
+.rodape-conteudo {
+    display: flex;
+    justify-content: space-around; 
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+    padding-bottom: 40px;
+}
+
+.rodape-coluna {
+    flex-basis: 30%; 
+    padding: 0 15px;
+}
+
+.logo-rodape {
+    max-width: 150px; 
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.mapa-site h3, .contato-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: var(--cor-texto-principal);
+}
+
+.mapa-site a {
+    display: block; 
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.mapa-site a:hover {
+    color: var(--cor-texto-principal);
+}
+
+.contato-info p {
+    margin-bottom: 10px;
+    color: var(--cor-texto-secundario);
+}
+
+.contato-icones {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.icone-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--cor-texto-secundario); 
+    color: var(--cor-texto-principal);
+    text-decoration: none;
+    font-size: 1.2em; /* Tamanho do ícone Font Awesome */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.icone-rodape:hover {
+    background-color: #c9b19f; 
+    border-color: var(--cor-texto-principal);
+}
+
+.rodape-direitos {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(51, 51, 51, 0.1); 
+    color: rgba(51, 51, 51, 0.8);
+    font-size: 0.85em;
+}
+
+
+/* ========================================================= */
+/* 7. BOTÃO FLUTUANTE DO WHATSAPP */
+/* ========================================================= */
+.whatsapp-flutuante {
+    position: fixed; 
+    width: 60px;
+    height: 60px;
+    bottom: 40px; 
+    right: 40px; 
+    background-color: #25d366; 
+    color: var(--cor-principal);
+    border-radius: 50%; 
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); 
+    z-index: 1500; 
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-flutuante:hover {
+    transform: scale(1.1); 
+}
+
+.whatsapp-flutuante img {
+    width: 35px; 
+    height: 35px;
+    background-color: transparent;
+    transition: none; 
+}
+
+/* ========================================================= */
+/* 8. ESTILOS DO MODAL (LIGHTBOX) */
+/* ========================================================= */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    padding-top: 50px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.95); 
+}
+
+.modal-conteudo {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.modal-imagem {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh; 
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+/* Botão Fechar */
+.modal-fechar {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 2001; 
+}
+
+.modal-fechar:hover,
+.modal-fechar:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Botões Anterior/Próximo */
+.modal-anterior, .modal-proximo {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-proximo {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.modal-anterior {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.modal-anterior:hover,
+.modal-proximo:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Animação do Zoom */
+.modal-conteudo {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* ========================================================= */
+/* 9. RESPONSIVIDADE (MEDIA QUERIES) */
+/* ========================================================= */
+
+/* Telas de Tablet (Largura Máxima de 768px) */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2em;
+    }
+    
+    .cabecalho {
+        padding: 15px 0;
+    }
+
+    .menu a {
+        margin: 0 10px;
+        font-size: 1em;
+    }
+    
+    .grade-fotos {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+
+    .sobre-conteudo {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .sobre {
+        text-align: center; 
+    }
+
+    .sobre-texto p {
+        text-align: center;
+    }
+    
+    .sobre-foto {
+        margin-top: 30px;
+        max-width: 80%; 
+    }
+    
+    .rodape-conteudo {
+        flex-direction: column; 
+        text-align: center;
+        gap: 30px;
+    }
+
+    .contato-icones {
+        justify-content: center; 
+    }
+
+    .whatsapp-flutuante {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Telas de Celular (Largura Máxima de 480px) */
+@media (max-width: 480px) {
+    .cabecalho {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu a {
+        margin: 5px 0;
+    }
+
+    .grade-fotos {
+        grid-template-columns: 1fr; 
+        gap: 10px;
+    }
+
+    section {
+        padding: 60px 10px;
+    }
+    
+    .redes-sociais {
+        flex-direction: column; 
+        gap: 10px;
+        padding: 0 20px;
+    }
+}
+/* ========================================= */
+/* ESTILOS DA PÁGINA CONTATO.HTML */
+/* ========================================= */
+
+.formulario-orcamento {
+    max-width: 600px; 
+    margin: 50px auto; /* Centraliza o formulário */
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-contato {
+    color: #444;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.subtitulo-contato {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.formulario-estilo label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formulario-estilo input,
+.formulario-estilo select,
+.formulario-estilo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    transition: border-color 0.3s;
+}
+
+.formulario-estilo input:focus,
+.formulario-estilo select:focus,
+.formulario-estilo textarea:focus {
+    border-color: #a08c82; /* Destaque ao focar na cor da marca */
+}
+
+.btn-enviar-contato {
+    width: 100%;
+    background-color: #a08c82; /* Cor da marca */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar-contato:hover {
+    background-color: #8b796d; /* Cor mais escura ao passar o mouse */
+}
+
+/* ========================================= */
+/* ESTILOS DA PÁGINA SERVICOS.HTML */
+/* ========================================= */
+
+.titulo-servicos {
+    text-align: center;
+    padding: 50px 20px 20px;
+    background-color: #f0f0f0;
+}
+
+.titulo-servicos h1 {
+    color: #a08c82;
+    font-size: 2.2em;
+}
+
+.bloco-servico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 20px;
+    gap: 40px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.servico-texto {
+    max-width: 500px;
+}
+
+.servico-texto h2 {
+    color: #a08c82;
+    margin-top: 0;
+}
+
+.servico-texto ul {
+    list-style: disc;
+    margin-left: 20px;
+    line-height: 1.6;
+}
+
+.servico-imagem {
+    width: 45%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.servico-imagem img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Reverte a ordem dos blocos (imagem à esquerda, texto à direita) */
+.bloco-servico.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Botão de Orçamento dentro dos serviços */
+.btn-orcamento-servico {
+    display: inline-block;
+    background-color: #444; /* Botão escuro para contraste */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-orcamento-servico:hover {
+    background-color: #a08c82; /* Muda para a cor da marca ao passar o mouse */
+}
+
+/* ========================================= */
+/* ESTILOS DA PÁGINA CONTATO.HTML */
+/* ========================================= */
+
+.formulario-orcamento {
+    max-width: 600px; 
+    margin: 50px auto; /* Centraliza o formulário */
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-contato {
+    color: #444;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.subtitulo-contato {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.formulario-estilo label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formulario-estilo input,
+.formulario-estilo select,
+.formulario-estilo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    transition: border-color 0.3s;
+}
+
+.formulario-estilo input:focus,
+.formulario-estilo select:focus,
+.formulario-estilo textarea:focus {
+    border-color: #a08c82; /* Destaque ao focar na cor da marca */
+}
+
+.btn-enviar-contato {
+    width: 100%;
+    background-color: #a08c82; /* Cor da marca */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar-contato:hover {
+    background-color: #8b796d; /* Cor mais escura ao passar o mouse */
+}
+
+/* ========================================= */
+/* ESTILOS DA SEÇÃO SOBRE (BIOGRAFIA) */
+/* ========================================= */
+
+.sobre {
+    padding: 80px 20px;
+    background-color: #f8f8f8; /* Fundo levemente cinza para destacar */
+    text-align: center;
+}
+
+.sobre h2 {
+    color: #a08c82; /* Cor da marca para o título */
+    margin-bottom: 40px;
+    font-size: 2.2em;
+}
+
+.sobre-conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.sobre-texto {
+    flex: 1;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.sobre-texto p {
+    margin-bottom: 15px;
+}
+
+.sobre-foto {
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.sobre-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o container */
+    display: block;
+}
+
+/* Responsividade básica */
+@media (max-width: 850px) {
+    .sobre-conteudo {
+        flex-direction: column;
+        text-align: center;
+    }
+    .sobre-texto {
+        max-width: 100%;
+    }
+}
+
+/* Estilos do Rodapé (complemento do seu CSS existente) */
+.rodape-coluna a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contato-icones {
+    margin-top: 15px;
+}
+
+.contato-icones .icone-rodape {
+    font-size: 1.8em;
+    margin-right: 15px;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+.contato-icones .icone-rodape:hover {
+    color: #ffffff; /* Ajuste a cor de hover se precisar */
+}
+
+/* ========================================= */
+/* ESTILOS DA PÁGINA SERVICOS.HTML */
+/* ========================================= */
+
+.titulo-servicos {
+    text-align: center;
+    padding: 50px 20px 20px;
+    background-color: #f0f0f0;
+}
+
+.titulo-servicos h1 {
+    color: #a08c82;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.btn-cta-servicos {
+    display: inline-block;
+    background-color: #a08c82;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 30px;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.btn-cta-servicos:hover {
+    background-color: #8b796d;
+}
+
+.bloco-servico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 20px;
+    gap: 40px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.servico-texto {
+    max-width: 500px;
+}
+
+.servico-texto h2 {
+    color: #444;
+    margin-top: 0;
+    border-bottom: 2px solid #a08c82; /* Linha de destaque */
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.servico-texto ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 0;
+    line-height: 1.6;
+}
+
+.servico-imagem {
+    width: 45%;
+    max-height: 400px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.servico-imagem img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Reverte a ordem dos blocos (imagem à esquerda, texto à direita) */
+.bloco-servico.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Botão de Orçamento dentro dos serviços */
+.btn-orcamento-servico {
+    display: inline-block;
+    background-color: #444; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-orcamento-servico:hover {
+    background-color: #a08c82; 
+}
+
+/* Responsividade para serviços */
+@media (max-width: 800px) {
+    .bloco-servico {
+        flex-direction: column;
+        text-align: center;
+    }
+    .bloco-servico.reverse {
+        flex-direction: column; /* Reverte para coluna no mobile */
+    }
+    .servico-imagem {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .servico-texto ul {
+        text-align: left;
+        margin: 0 auto 20px;
+        width: fit-content;
+    }
+}
+
+/* ==================================== */
+/* ESTILOS GERAIS */
+/* ==================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ==================================== */
+/* ESTILOS DE NAVEGAÇÃO E RODAPÉ */
+/* ==================================== */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+
+/* ==================================== */
+/* ESTILOS ESPECÍFICOS DA PÁGINA DE CONTATO */
+/* ==================================== */
+
+/* Centraliza o conteúdo da nova página de contato */
+.whatsapp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh; /* Garante que o container fique no centro da tela */
+    text-align: center;
+}
+
+.whatsapp-container p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+/* Estilo para o Botão do WhatsApp */
+.btn-whatsapp {
+    display: inline-block;
+    background-color: #25D366; /* Cor oficial do WhatsApp */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px; /* Botão arredondado */
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-whatsapp:hover {
+    background-color: #1DA851; /* Cor mais escura no hover */
+}
+
+/* Opcional: Estilo para ícone de WhatsApp (se for usar) */
+.btn-whatsapp::before {
+    content: "📱 "; /* Adiciona um ícone de celular */
+    margin-right: 8px;
+}
+
+
+/* ==================================== */
+/* ESTILOS DE RETORNO (ERRO/SUCESSO) - Manter por precaução */
+/* ==================================== */
+.pagina-retorno {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.mensagem-container {
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px;
+}
+
+.sucesso {
+    border: 2px solid #28a745;
+    background-color: #d4edda;
+}
+
+.erro {
+    border: 2px solid #dc3545;
+    background-color: #f8d7da;
+}
+
+.btn-retorno {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-retorno:hover {
+    background-color: #0056b3;
+}
+
+/* ==================================== */
+/* ESTILOS GERAIS */
+/* ==================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fundo levemente cinza fora do container */
+    color: #333;
+}
+
+/* O container principal que garante a largura e o fundo branco (igual nas outras páginas) */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 80vh; /* Garante que o conteúdo ocupe a maior parte da tela */
+}
+
+h1 {
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ==================================== */
+/* ESTILOS DE NAVEGAÇÃO E RODAPÉ (Consistência Visual) */
+/* ==================================== */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Destaque no hover */
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+
+/* ==================================== */
+/* ESTILOS PARA O NOVO CONTATO (Apenas Botão) */
+/* ==================================== */
+
+/* Container para centralizar o botão de forma eficiente */
+.whatsapp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.whatsapp-container h1 {
+    margin-top: 0;
+}
+
+.whatsapp-container p {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Estilo para o Botão do WhatsApp (Chamada para Ação) */
+.btn-whatsapp {
+    display: inline-block;
+    background-color: #25D366; /* Cor oficial do WhatsApp */
+    color: white;
+    padding: 18px 35px;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px; /* Botão arredondado */
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-whatsapp:hover {
+    background-color: #1DA851; /* Cor mais escura no hover */
+    transform: translateY(-2px); /* Efeito de elevação sutil */
+}
+
+/* Ícone de celular (opcional) */
+.btn-whatsapp::before {
+    content: "📱 "; 
+    margin-right: 10px;
+}
+
+/* ==================================== */
+/* ESTILOS DE RETORNO (ERRO/SUCESSO) - Manter por precaução */
+/* ==================================== */
+
+/* Estilos de layout básico, caso as páginas de erro/sucesso voltem a ser usadas */
+.pagina-retorno {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.mensagem-container {
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px;
+}
+
+.sucesso {
+    border: 2px solid #28a745;
+    background-color: #d4edda;
+}
+
+.erro {
+    border: 2px solid #dc3545;
+    background-color: #f8d7da;
+}
+
+.btn-retorno {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-retorno:hover {
+    background-color: #0056b3;
+}
